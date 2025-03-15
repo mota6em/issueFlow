@@ -13,7 +13,12 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 type IssueData = z.infer<typeof createIssueSchema>;
 
 const page = () => {
-  const { register, handleSubmit, control, formState: { errors} } = useForm<IssueData>({
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IssueData>({
     resolver: zodResolver(createIssueSchema),
   });
   const router = useRouter();
@@ -64,9 +69,9 @@ const page = () => {
             rounded: true,
           })}
         />
-        {errors.title && (
-          <ErrorMessage>{errors.title.message}</ErrorMessage>
-        )}
+
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
+
         <p className="text-lg">Description</p>
         <Controller
           control={control}
@@ -85,9 +90,8 @@ const page = () => {
             />
           )}
         />
-        {errors.description && (
-          <ErrorMessage>{errors.description.message}</ErrorMessage>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+
         <button
           className={classNames({
             "btn  mt-1 hover:border-white": true,
