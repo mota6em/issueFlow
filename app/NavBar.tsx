@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoBugOutline } from "react-icons/io5";
-
+import classNames from "classnames";
 const NavBar = () => {
   const Links = [
     { href: "/", label: "Dashboard" },
-    { href: "/", label: "Issues" },
+    { href: "/issues", label: "Issues" },
   ];
+  const currentPath = usePathname();
   const [theme, setTheme] = useState("dark");
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -24,7 +26,10 @@ const NavBar = () => {
             <li key={`${href}${label}`}>
               <Link
                 href={href}
-                className="text-base-content hover:opacity-80 transition-colors"
+                className={classNames({
+                  "opacity-70": currentPath === href,
+                  "opacity-100": currentPath !== href,
+                })}
               >
                 {label}
               </Link>
