@@ -1,8 +1,9 @@
-import prisma from "@/prisma/client";
 import React from "react";
+import IssueStatusBadge from "./IssueStatusBadge";
+import { getIssues } from "../lib/issues";
 
-const IssuesTable =  async () => {
-  const issues = await prisma.issue.findMany();
+const IssuesTable = async () => {
+  const issues = await getIssues();
   return (
     <div className="overflow-x-scroll px-5 w-full rounded-box border border-base-content/5 bg-base-100">
       <table className="table">
@@ -17,7 +18,7 @@ const IssuesTable =  async () => {
           {issues.map((issue) => (
             <tr key={issue.id}>
               <td>{issue.title}</td>
-              <td>{issue.status}</td>
+              <td>{<IssueStatusBadge status={issue.status} />}</td>
               <td>{issue.createdAt.toDateString()}</td>
             </tr>
           ))}
