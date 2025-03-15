@@ -36,9 +36,9 @@ const page = () => {
     }
   };
   return (
-    <>
+    <div className="w-full flex justify-center">
       <form
-        className="w-6/12 space-y-2"
+        className="w-full md:w-6/12 space-y-2"
         onSubmit={handleSubmit((data) => onsubmit(data))}
       >
         <h1 className="text-2xl py-2 font-bold">New Issue</h1>
@@ -104,11 +104,10 @@ const page = () => {
           })}
           disabled={subbmitting}
         >
-          Submit New Issue {subbmitting && <Spinner />}  
+          Submit New Issue {subbmitting && <Spinner />}
         </button>
       </form>
-    </>
+    </div>
   );
 };
-
 export default page;

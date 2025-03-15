@@ -16,7 +16,7 @@ const NavBar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   return (
-    <div className="flex items-center justify-between space-x-8 h-12 border-b px-10">
+    <div className="flex items-center justify-between space-x-8 h-12 border-b px-10 overflow-x-hidden">
       <div className="flex items-center space-x-10">
         <Link href="/">
           <IoBugOutline size={32} />
