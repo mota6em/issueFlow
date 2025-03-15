@@ -6,12 +6,16 @@ import classNames from "classnames";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-interface IssueData {
-  title: string;
-  description: string;
-}
+import { z } from "zod";
+import { createIssueSchema } from "@/app/localTSfiles/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
+type IssueData = z.infer<typeof createIssueSchema>;
+
 const page = () => {
-  const { register, handleSubmit, control } = useForm<IssueData>();
+  const { register, handleSubmit, control, formState: { errors} } = useForm<IssueData>({
+    resolver: zodResolver(createIssueSchema),
+  });
   const router = useRouter();
   const [error, setError] = useState("");
   const onsubmit = async (data: IssueData) => {
@@ -60,6 +64,9 @@ const page = () => {
             rounded: true,
           })}
         />
+        {errors.title && (
+          <ErrorMessage>{errors.title.message}</ErrorMessage>
+        )}
         <p className="text-lg">Description</p>
         <Controller
           control={control}
@@ -78,7 +85,9 @@ const page = () => {
             />
           )}
         />
-
+        {errors.description && (
+          <ErrorMessage>{errors.description.message}</ErrorMessage>
+        )}
         <button
           className={classNames({
             "btn  mt-1 hover:border-white": true,
