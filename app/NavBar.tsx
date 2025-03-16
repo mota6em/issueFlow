@@ -10,7 +10,7 @@ const NavBar = () => {
     { href: "/issues", label: "Issues" },
   ];
   const currentPath = usePathname();
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
