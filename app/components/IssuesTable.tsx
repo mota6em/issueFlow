@@ -1,6 +1,7 @@
 import React from "react";
 import IssueStatusBadge from "./IssueStatusBadge";
 import { getIssues } from "../lib/issues";
+import Link from "next/link";
 
 const IssuesTable = async () => {
   const issues = await getIssues();
@@ -17,7 +18,9 @@ const IssuesTable = async () => {
         <tbody>
           {issues.map((issue) => (
             <tr key={issue.id}>
-              <td>{issue.title}</td>
+              <td>
+                <Link href={`/issues/${issue.id}`}>{issue.title} </Link>
+              </td>
               <td>{<IssueStatusBadge status={issue.status} />}</td>
               <td>{issue.createdAt.toDateString()}</td>
             </tr>
