@@ -1,3 +1,4 @@
+import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -13,11 +14,20 @@ const IssueDetailPage = async ({ params }: Props) => {
   if (!issue) {
     notFound();
   }
- 
+  console.log(issue.status);
   return (
-    <div>
-      <h1>{issue.title}</h1>
-      <p>{issue.description}</p>
+    <div className="p-4 space-y-3">
+      <h1 className="text-2xl ">
+        <span className="font-bold">Title:</span> {issue.title}
+      </h1>
+      <div className="flex space-x-2">
+        <p>State:</p>
+        <IssueStatusBadge status={issue.status} />
+      </div>
+      <div className="mt-4 rounded bg-base-200 p-4 space-y-2 md:w-6/12">
+        <p className="font-bold">Issue description:</p>
+        <p>{issue.description}</p>
+      </div>
     </div>
   );
 };
