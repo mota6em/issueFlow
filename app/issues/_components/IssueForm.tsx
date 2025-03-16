@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { string, z } from "zod";
+import { z } from "zod";
 import { IssueSchema } from "@/app/localTSfiles/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMessage, Spinner } from "@/app/components/index";
@@ -20,7 +20,7 @@ interface Props {
   issue?: Issue;
 }
 
-const IssueForm = ({ issue } = Props) => {
+const IssueForm = ({ issue } : Props) => {
   const {
     register,
     handleSubmit,
@@ -38,9 +38,10 @@ const IssueForm = ({ issue } = Props) => {
       if (issue) await axios.patch(`/api/issues/${issue.id}`, data);
       else await axios.post("/api/issues", data);
       router.push("/issues");
+      router.refresh();
     } catch (error) {
       setSubmitting(false);
-      setError("An unexpected error occurred. Please try again later.");
+      setError("An unexpected error occurred. Please try again later. More info: " + error);
     }
   };
   return (
