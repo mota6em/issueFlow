@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import classNames from "classnames";
 import { Controller, useForm } from "react-hook-form";
@@ -11,9 +10,11 @@ import { createIssueSchema } from "@/app/localTSfiles/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
-import delay from "delay";
 type IssueData = z.infer<typeof createIssueSchema>;
-
+import dynamic from "next/dynamic";
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 const page = () => {
   const {
     register,
