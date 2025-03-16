@@ -6,10 +6,10 @@ import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { string, z } from "zod";
-import { createIssueSchema } from "@/app/localTSfiles/schemas";
+import { IssueSchema } from "@/app/localTSfiles/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMessage, Spinner } from "@/app/components/index";
-type IssueData = z.infer<typeof createIssueSchema>;
+type IssueData = z.infer<typeof IssueSchema>;
 import dynamic from "next/dynamic";
 import { Issue } from "@prisma/client";
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
@@ -27,7 +27,7 @@ const IssueForm = ({ issue } = Props) => {
     control,
     formState: { errors },
   } = useForm<IssueData>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(IssueSchema),
   });
   const [subbmitting, setSubmitting] = useState(false);
   const router = useRouter();
