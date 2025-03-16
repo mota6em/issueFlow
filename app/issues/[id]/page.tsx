@@ -20,7 +20,7 @@ const IssueDetailPage = async ({ params }: Props) => {
   return (
     <div className="p-1 md:p-5 m-0 w-full space-y-3">
       <h1 className="text-2xl ">
-        <span className="font-bold">Title:</span> {issue.title}
+        <span className="font-bold ">Title:</span> {issue.title}
       </h1>
       <div className="flex space-x-2">
         <p>State:</p>

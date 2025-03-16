@@ -19,7 +19,12 @@ const IssuesTable = async () => {
           {issues.map((issue) => (
             <tr key={issue.id}>
               <td>
-                <Link href={`/issues/${issue.id}`}>{issue.title} </Link>
+                <Link
+                  href={`/issues/${issue.id}`}
+                  className="text-primary  text-lg font-bold  hover:underline"
+                >
+                  {issue.title}
+                </Link>
               </td>
               <td>{<IssueStatusBadge status={issue.status} />}</td>
               <td>{issue.createdAt.toDateString()}</td>
