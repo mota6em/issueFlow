@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { createIssueSchema } from "@/app/localTSfiles/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ErrorMessage from "@/app/components/ErrorMessage";
-import Spinner from "@/app/components/Spinner";
+import { ErrorMessage, Spinner } from "@/app/components/index";
 type IssueData = z.infer<typeof createIssueSchema>;
 import dynamic from "next/dynamic";
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {

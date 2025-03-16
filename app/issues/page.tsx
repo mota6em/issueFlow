@@ -1,11 +1,11 @@
 import React from "react";
-import IssuesTable from "../components/IssuesTable";
+import { IssuesTable } from "../components/index";
 import IssuesActions from "./IssuesActions";
-import delay from "delay";
- const Issues = async () => {
+
+const Issues = async () => {
   //  await delay(5000);
-   return (
-     <div>
+  return (
+    <div>
       <IssuesActions />
       <IssuesTable />
     </div>
