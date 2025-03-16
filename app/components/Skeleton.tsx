@@ -1,7 +1,7 @@
 import React from "react";
 
-const Skeleton = () => {
-  return <div className="skeleton h-4 w-full"></div>;
+const Skeleton = ({ className }: { className?: string }) => {
+  return <div className={`${className} skeleton h-4`}></div>;
 };
 
 export default Skeleton;

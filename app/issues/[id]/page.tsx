@@ -1,5 +1,6 @@
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
+import delay from "delay";
 import { notFound } from "next/navigation";
 import React from "react";
 import ReactMarkDown from "react-markdown";
@@ -17,6 +18,7 @@ const IssueDetailPage = async ({ params }: Props) => {
     notFound();
   }
   console.log(issue.status);
+  await delay(5000);
   return (
     <div className="p-1 md:p-5 m-0 w-full space-y-3">
       <h1 className="text-2xl ">

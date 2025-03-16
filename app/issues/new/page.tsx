@@ -11,6 +11,7 @@ import { createIssueSchema } from "@/app/localTSfiles/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
+import delay from "delay";
 type IssueData = z.infer<typeof createIssueSchema>;
 
 const page = () => {
@@ -35,6 +36,7 @@ const page = () => {
       setError("An unexpected error occurred. Please try again later.");
     }
   };
+
   return (
     <div className="w-full flex justify-center">
       <form
