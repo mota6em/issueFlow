@@ -42,7 +42,7 @@ const IssueDetailPage = async ({ params }: Props) => {
           Edit Issue <FaRegEdit />
         </Link>
 
-        <DeleteIssueButton />
+        <DeleteIssueButton issueId={ issue.id} />
       </div>
     </div>
   );
