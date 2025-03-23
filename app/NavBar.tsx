@@ -17,7 +17,7 @@ const NavBar = () => {
 export default NavBar;
 
 const ModeToggle = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [theme, setTheme] = useState("dark");
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);

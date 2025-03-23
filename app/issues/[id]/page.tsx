@@ -22,7 +22,7 @@ const IssueDetailPage = async ({ params }: Props) => {
   if (!issue) {
     notFound();
   }
-  console.log(issue.status);
+ 
 
   return (
     <div className="flex items-start justify-around  w-full overflow-x-hidden">
