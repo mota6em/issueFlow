@@ -22,7 +22,6 @@ const IssueDetailPage = async ({ params }: Props) => {
   if (!issue) {
     notFound();
   }
- 
 
   return (
     <div className="flex items-start justify-around  w-full overflow-x-hidden">
@@ -40,7 +39,7 @@ const IssueDetailPage = async ({ params }: Props) => {
       </div>
       {status && (
         <div className="w-full px-5 pt-3 md:w-2/12 flex flex-col items-center justify-center">
-          <AssigneeSelect />
+          <AssigneeSelect issue={issue} />
           <Link
             href={`/issues/${issue.id}/edit`}
             className="btn w-full m-4 btn-primary"

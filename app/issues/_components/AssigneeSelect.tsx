@@ -1,12 +1,12 @@
 "use client";
 import { Skeleton } from "@/app/components";
-import { User } from "@prisma/client";
+import { Issue, User } from "@prisma/client";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 
-const AssigneeSelect = () => {
+const AssigneeSelect = ({ issue }: { issue: Issue }) => {
   const {
     data: users,
     error,
@@ -23,12 +23,24 @@ const AssigneeSelect = () => {
   if (error) return null;
   return (
     <select
-      defaultValue="Assing to user"
-      className="select select-primary cursor-pointer w-48"
+      onChange={(e) => {
+        const userID = e.target.value;
+        console.log(userID);
+        const updateAssignedUser = async () => {
+          await axios.patch(`/api/issues/${issue.id}`, {
+            assignedToUserId: userID || null,
+          });
+        };
+        updateAssignedUser();
+      }}
+      defaultValue={issue.assignedToUserId || ""}
+      className="select select-primary cursor-pointer w-48 py-2  "
     >
-      <option disabled={true}>Assing to user</option>
+      <option value={""} className="text-red-300">
+        Un assigned
+      </option>
       {users?.map((user) => (
-        <option className="text-base mx-5" key={user.id}>
+        <option className="text-base mx-5" value={user.id} key={user.id}>
           {user.name}
         </option>
       ))}
