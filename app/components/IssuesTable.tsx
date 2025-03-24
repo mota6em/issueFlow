@@ -2,9 +2,12 @@ import React from "react";
 import IssueStatusBadge from "./IssueStatusBadge";
 import { getIssues } from "../lib/issues";
 import Link from "next/link";
-
-const IssuesTable = async () => {
-  const issues = await getIssues();
+import { Status } from "@prisma/client";
+interface Props {
+  status?: Status;
+}
+const IssuesTable = async ({ status }: Props) => {
+  const issues = await getIssues(status);
   return (
     <div className="overflow-x-scroll px-5 w-full rounded-box border border-base-content/5 bg-base-100">
       <table className="table">

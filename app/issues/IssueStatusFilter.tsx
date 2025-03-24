@@ -1,17 +1,19 @@
 "use client";
 import { Status } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const IssueStatusFilter = () => {
   const status: {
     label: string;
-    value: Status;
+    value: Status | "";
   }[] = [
     { label: "All", value: "" },
     { label: "Open", value: "OPEN" },
     { label: "In Progress", value: "IN_PROGRESS" },
     { label: "Closed", value: "CLOSED" },
   ];
+  const router = useRouter();
   return (
     <div>
       <fieldset className="fieldset flex items-center">
@@ -19,6 +21,11 @@ const IssueStatusFilter = () => {
         <select
           className="select select-primary cursor-pointer w-48 py-2  "
           defaultValue={""}
+          onChange={(e) => {
+            const status = e.target.value;
+            const statusQuery = status === "" ? "" : `?status=${status}`;
+            router.push(`/issues${statusQuery}`);
+          }}
         >
           {status.map((status) => (
             <option
