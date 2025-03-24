@@ -24,7 +24,6 @@ const IssueChart = ({ openIssues, inProgressIssues, closedIssues }: Props) => {
   return (
     <div className="card bg-base-100 w-lg shadow-sm">
       <div className="card-body">
-        <div className="card-title">Issue Status Summary</div>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
             <XAxis

@@ -7,7 +7,7 @@ import classNames from "classnames";
 
 const NavBar = () => {
   return (
-    <div className="fixed top-0 left-0 right-0 w-full bg-base-200/30 backdrop-blur  flex items-center justify-between space-x-8 h-12 border-b px-10 pe-5 overflow-x-hidden">
+    <div className="fixed z-50 top-0 left-0 right-0 w-full bg-base-200/30 backdrop-blur  flex items-center justify-between space-x-8 h-12 border-b px-10 pe-5 overflow-x-hidden">
       <NavBarLinks />
       <ModeToggle />
     </div>
@@ -17,7 +17,7 @@ const NavBar = () => {
 export default NavBar;
 
 const ModeToggle = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);

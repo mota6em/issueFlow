@@ -14,9 +14,9 @@ const LatestIssues = async () => {
     },
   });
   return (
-    <div className="card bg-base-200 w-lg shadow-2xl">
+    <div className="card  bg-base-100 w-full shadow-sm border-l-1 border-l-base-content/50 border border-base-content/10">
       <div className="card-body">
-        <h2 className="card-title">Latest Issues</h2>
+        <h2 className="card-title text-2xl">Latest Issues</h2>
         <table className="table">
           <tbody>
             {latestIssues.map((issue) => (
