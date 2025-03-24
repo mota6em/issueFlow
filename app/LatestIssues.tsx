@@ -14,7 +14,7 @@ const LatestIssues = async () => {
     },
   });
   return (
-    <div className="card bg-base-200 w-full shadow-2xl">
+    <div className="card bg-base-200 w-lg shadow-2xl">
       <div className="card-body">
         <h2 className="card-title">Latest Issues</h2>
         <table className="table">
