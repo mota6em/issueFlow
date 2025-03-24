@@ -35,7 +35,7 @@ export default function RootLayout({
           <AuthProvider>
             <NavBar />
             <AuthStatus />
-            <main className="p-4 mt-12">{children}</main>
+            <main className="w-full px-4  mt-12">{children}</main>
           </AuthProvider>
         </QueryClientProvider>
       </body>

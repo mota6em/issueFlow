@@ -18,24 +18,20 @@ const IssueSummary = ({
     { label: "Closed", value: closedIssues, status: "CLOSED" },
   ];
   return (
-    <div className="flex flex-col gap-2 ">
-      <h3 className="text-2xl font-bold">Total Issues</h3>
-      <div className="flex flex-row gap-2 items-center justify-start">
+    <div className="flex flex-col gap-2 w-full py-3">
+      <h3 className="text-2xl w-fit font-bold">Total Issues</h3>
+      <div className="flex flex-row gap-2 ">
         {container.map(({ label, value, status }) => (
           <Link
             key={label}
             href={`/issues?status=${status}`}
-            className=" text-md font-medium"
+            className="text-xs lg:text-md font-medium w-full  p-4 rounded-md flex flex-col items-start justify-center gap-2 border border-base-content/10"
           >
-            <div className="card bg-base-200 py-0 w-44 shadow-sm border hover:border-base-content transition duration-100 border-base-content/10">
-              <div className="card-body w-full">
-                <IssueStatusBadge
-                  className="text-lg font-bold "
-                  status={status}
-                />
-                <p className="text-3xl font-bold">{value}</p>
-              </div>
-            </div>
+            <IssueStatusBadge
+              className="text-ssm md:text-lg   "
+              status={status}
+            />
+            <p className="text-sm lg:text-3xl w-fit font-bold">{value}</p>
           </Link>
         ))}
       </div>

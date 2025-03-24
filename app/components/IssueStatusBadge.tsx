@@ -15,8 +15,11 @@ const IssueStatusBadge = ({ status, className }: Props) => {
     );
   } else if (status === "IN_PROGRESS") {
     return (
-      <span className={`badge badge-soft badge-warning ${className}`}>
-        In Progress
+      <span
+        className={`badge badge-soft flex flex-row badge-warning gap-0.5 ${className}`}
+      >
+        <p>In</p>
+        <p>Progress </p>
       </span>
     );
   } else if (status === "CLOSED") {

@@ -12,8 +12,8 @@ export default async function Home() {
     where: { status: "CLOSED" },
   });
   return (
-    <div className="grid md:px-5 w-full grid-cols-1 md:grid-cols-2 gap-2">
-      <div className="space-y-5">
+    <div className="grid md:grid-cols-2 min-h-screen  md:mt-20 grid-cols-1 md:gap-5 lg:gap-10 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <IssueSummary
           openIssues={openIssues}
           inProgressIssues={inProgressIssues}
@@ -25,7 +25,7 @@ export default async function Home() {
           closedIssues={closedIssues}
         />
       </div>
-      <div>
+      <div className="flex flex-col mt-10 md:mt-0 gap-5 w-full">
         <LatestIssues />
       </div>
     </div>
