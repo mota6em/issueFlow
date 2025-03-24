@@ -1,16 +1,9 @@
-import Pagination from "./components/Pagination";
+import LatestIssues from "./LatestIssues";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
-  const page = parseInt(searchParams.page || "1", 10);
-
+export default function Home() {
   return (
-    <div>
-      Hello World
-      <Pagination pageSize={10} itemCount={100} currentPage={page} />
+    <div className="w-full flex justify-center items-center">
+      <LatestIssues />
     </div>
   );
 }
