@@ -24,8 +24,8 @@ const Pagination = ({ pageSize, itemCount, currentPage }: Props) => {
     router.push("?" + params.toString());
   };
   return (
-    <div className="flex  items-center">
-      This is page {currentPage} of {pagesCount}
+    <div className="flex  items-center my-4 ms-2">
+      Page {currentPage} of {pagesCount}
       <div className="flex ms-2 space-x-2 ">
         <button
           className="btn text-lg px-2"

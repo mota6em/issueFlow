@@ -11,8 +11,9 @@ interface Props {
     orderBy?: keyof Issue;
     direction?: "asc" | "desc";
   };
+  pagination: { page: number; pageSize: number; itemCount: number };
 }
-const IssuesTable = async ({ dataFromSearchParams }: Props) => {
+const IssuesTable = async ({ dataFromSearchParams, pagination }: Props) => {
   const { status, direction } = dataFromSearchParams;
   let orderBy = dataFromSearchParams.orderBy;
   const columns: {
@@ -36,7 +37,7 @@ const IssuesTable = async ({ dataFromSearchParams }: Props) => {
     orderBy = "title";
   }
   const nextDirection = direction === "asc" ? "desc" : "asc";
-  const issues = await getIssues(status, orderBy, direction);
+  const issues = await getIssues(pagination, status, orderBy, direction);
   return (
     <div className="overflow-x-scroll px-5 w-full rounded-box border border-base-content/5 bg-base-100">
       <table className="table">
