@@ -67,10 +67,10 @@ const IssuesTable = async ({ dataFromSearchParams, pagination }: Props) => {
         <tbody>
           {issues.map((issue) => (
             <tr key={issue.id}>
-              <td>
+              <td className="min-w-60">
                 <Link
                   href={`/issues/${issue.id}`}
-                  className="text-primary  text-lg font-bold  hover:underline"
+                  className="text-primary text-lg font-bold  hover:underline"
                 >
                   {issue.title}
                 </Link>

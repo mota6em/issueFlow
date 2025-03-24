@@ -25,7 +25,7 @@ const Issues = async ({ searchParams }: Props) => {
     },
   });
   return (
-    <div>
+    <div className="mt-20 md:mt-0">
       <IssuesActions dataFromSearchParams={dataFromSearchParams} />
       <IssuesTable
         dataFromSearchParams={dataFromSearchParams}

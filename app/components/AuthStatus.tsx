@@ -10,8 +10,11 @@ const AuthStatus = () => {
   }
   if (status === "unauthenticated") {
     return (
-      <div className="fixed top-1 right-32 z-50 dropdown dropdown-end p-2">
-        <Link href="/api/auth/signin" className="hover:underline hover:text-green-500">
+      <div className="hidden md:flex fixed top-1 right-32 z-50 dropdown dropdown-end p-2">
+        <Link
+          href="/api/auth/signin"
+          className="hover:underline hover:text-green-500"
+        >
           Login
         </Link>
       </div>
@@ -19,7 +22,7 @@ const AuthStatus = () => {
   }
   return (
     <div>
-      <div className="fixed top-1 right-32 z-50 dropdown dropdown-end">
+      <div className="hidden  md:flex fixed top-1 right-32 z-50 dropdown dropdown-end">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-8 rounded-full">
             <img src={session?.user?.image} />

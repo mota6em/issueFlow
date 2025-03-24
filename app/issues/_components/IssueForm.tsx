@@ -45,7 +45,7 @@ const IssueForm = ({ issue } : Props) => {
     }
   };
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full mt-16 md:mt-0 flex justify-center">
       <form
         className="w-full md:w-6/12 space-y-2"
         onSubmit={handleSubmit((data) => onsubmit(data))}
