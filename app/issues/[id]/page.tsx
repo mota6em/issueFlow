@@ -1,7 +1,7 @@
 import { IssueStatusBadge } from "@/app/components/index";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { cache } from "react";
 import ReactMarkDown from "react-markdown";
 import { FaRegEdit } from "react-icons/fa";
 import Link from "next/link";
@@ -9,17 +9,17 @@ import DeleteIssueButton from "../_components/DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import AssigneeSelect from "../_components/AssigneeSelect";
-import { Metadata } from "next";
+
 interface Props {
   params: { id: string };
 }
+
+const getIssue = cache((issueId: number) =>
+  prisma.issue.findUnique({ where: { id: issueId } })
+);
 const IssueDetailPage = async ({ params }: Props) => {
   const status = await getServerSession(authOptions);
-  const issue = await prisma.issue.findUnique({
-    where: {
-      id: parseInt(params.id),
-    },
-  });
+  const issue = await getIssue(parseInt(params.id));
   if (!issue) {
     notFound();
   }
@@ -58,11 +58,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 export default IssueDetailPage;
 
 export async function generateMetadata({ params }: Props) {
-  const issue = await prisma.issue.findUnique({
-    where: {
-      id: parseInt(params.id),
-    },
-  });
+  const issue = await getIssue(parseInt(params.id));
   return {
     title: `${issue?.title} | Issue Flow`,
     description: "Details of issue " + issue?.id,
