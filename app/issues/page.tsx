@@ -12,11 +12,11 @@ interface Props {
   }>;
 }
 const Issues = async ({ searchParams }: Props) => {
-  let dataFromSearchParams = await searchParams;
+  const dataFromSearchParams = await searchParams;
 
   return (
     <div>
-      <IssuesActions orderBy={dataFromSearchParams.orderBy} direction={dataFromSearchParams.direction} />
+      <IssuesActions dataFromSearchParams={dataFromSearchParams} />
       <IssuesTable dataFromSearchParams={dataFromSearchParams} />
     </div>
   );

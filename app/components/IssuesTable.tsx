@@ -13,7 +13,8 @@ interface Props {
   };
 }
 const IssuesTable = async ({ dataFromSearchParams }: Props) => {
-  let { status, orderBy, direction } = dataFromSearchParams;
+  const { status, direction } = dataFromSearchParams;
+  let orderBy = dataFromSearchParams.orderBy;
   const columns: {
     label: string;
     value: keyof Issue;
@@ -31,7 +32,7 @@ const IssuesTable = async ({ dataFromSearchParams }: Props) => {
       value: "createdAt",
     },
   ];
-  if (!columns.map((column) => column.value).includes(orderBy)) {
+  if (!columns.map((column) => column.value).includes(orderBy!)) {
     orderBy = "title";
   }
   const nextDirection = direction === "asc" ? "desc" : "asc";
