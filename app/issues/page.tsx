@@ -8,16 +8,16 @@ interface Props {
   searchParams: Promise<{
     status?: Status;
     orderBy?: keyof Issue;
+    direction?: "asc" | "desc";
   }>;
 }
 const Issues = async ({ searchParams }: Props) => {
-  let { status, orderBy } = await searchParams;
-  const statuses = Object.values(Status);
-  status = statuses.includes(status) ? status : undefined;
+  let dataFromSearchParams = await searchParams;
+
   return (
     <div>
-      <IssuesActions orderBy={orderBy} />
-      <IssuesTable status={status} orderBy={orderBy} />
+      <IssuesActions orderBy={dataFromSearchParams.orderBy} direction={dataFromSearchParams.direction} />
+      <IssuesTable dataFromSearchParams={dataFromSearchParams} />
     </div>
   );
 };

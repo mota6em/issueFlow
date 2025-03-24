@@ -6,11 +6,14 @@ import { Issue, Status } from "@prisma/client";
 import { FaArrowUp } from "react-icons/fa";
 
 interface Props {
-  status?: Status;
-  orderBy?: keyof Issue;
+  dataFromSearchParams: {
+    status?: Status;
+    orderBy?: keyof Issue;
+    direction?: "asc" | "desc";
+  };
 }
-const IssuesTable = async ({ status, orderBy }: Props) => {
-  const issues = await getIssues(status);
+const IssuesTable = async ({ dataFromSearchParams }: Props) => {
+  let { status, orderBy, direction } = dataFromSearchParams;
   const columns: {
     label: string;
     value: keyof Issue;
@@ -28,6 +31,11 @@ const IssuesTable = async ({ status, orderBy }: Props) => {
       value: "createdAt",
     },
   ];
+  if (!columns.map((column) => column.value).includes(orderBy)) {
+    orderBy = "title";
+  }
+  const nextDirection = direction === "asc" ? "desc" : "asc";
+  const issues = await getIssues(status, orderBy, direction);
   return (
     <div className="overflow-x-scroll px-5 w-full rounded-box border border-base-content/5 bg-base-100">
       <table className="table">
@@ -36,14 +44,19 @@ const IssuesTable = async ({ status, orderBy }: Props) => {
             {columns.map((column) => (
               <th key={column.value}>
                 <Link
-                  href={
-                    issues
-                      ? `/issues?orderBy=${column.value}&status=${status}`
-                      : `/issues?status=${status}`
-                  }
+                  href={`/issues?orderBy=${column.value}&direction=${
+                    orderBy === column.value ? nextDirection : direction
+                  }${status ? `&status=${status}` : ""}`}
                   className="flex flex-row items-center  text-lg font-bold  hover:underline"
                 >
-                  {orderBy === column.value && <FaArrowUp className="me-1" />} {column.label}
+                  {orderBy === column.value && (
+                    <FaArrowUp
+                      className={`me-1 transition-transform ${
+                        direction === "asc" ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                  {column.label}
                 </Link>
               </th>
             ))}

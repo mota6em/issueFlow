@@ -3,7 +3,13 @@ import { Issue, Status } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const IssueStatusFilter = ({ orderBy }: { orderBy: keyof Issue }) => {
+const IssueStatusFilter = ({
+  orderBy,
+  direction,
+}: {
+  orderBy: keyof Issue;
+  direction: "asc" | "desc";
+}) => {
   const status: {
     label: string;
     value: Status | "";
@@ -32,6 +38,10 @@ const IssueStatusFilter = ({ orderBy }: { orderBy: keyof Issue }) => {
             if (orderBy) {
               query += query ? `&orderBy=${orderBy}` : `?orderBy=${orderBy}`;
             }
+            if (direction)
+              query += query
+                ? `&direction=${direction}`
+                : `?direction=${direction}`;
             router.push(`/issues${query}`);
           }}
         >
