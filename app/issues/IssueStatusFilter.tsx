@@ -1,9 +1,9 @@
 "use client";
-import { Status } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const IssueStatusFilter = () => {
+const IssueStatusFilter = ({ orderBy }: { orderBy: keyof Issue }) => {
   const status: {
     label: string;
     value: Status | "";
@@ -23,8 +23,16 @@ const IssueStatusFilter = () => {
           defaultValue={""}
           onChange={(e) => {
             const status = e.target.value;
-            const statusQuery = status === "" ? "" : `?status=${status}`;
-            router.push(`/issues${statusQuery}`);
+            let query = "";
+
+            if (status) {
+              query += `?status=${status}`;
+            }
+
+            if (orderBy) {
+              query += query ? `&orderBy=${orderBy}` : `?orderBy=${orderBy}`;
+            }
+            router.push(`/issues${query}`);
           }}
         >
           {status.map((status) => (

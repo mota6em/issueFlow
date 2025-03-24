@@ -2,20 +2,22 @@ import React from "react";
 import { IssuesTable } from "../components/index";
 import IssuesActions from "./IssuesActions";
 import { Status } from "@prisma/client";
-import { stat } from "fs";
+import { Issue } from "@prisma/client";
+
 interface Props {
   searchParams: Promise<{
     status?: Status;
+    orderBy?: keyof Issue;
   }>;
 }
 const Issues = async ({ searchParams }: Props) => {
-  let { status } = await searchParams;
+  let { status, orderBy } = await searchParams;
   const statuses = Object.values(Status);
   status = statuses.includes(status) ? status : undefined;
   return (
     <div>
-      <IssuesActions />
-      <IssuesTable status={status} />
+      <IssuesActions orderBy={orderBy} />
+      <IssuesTable status={status} orderBy={orderBy} />
     </div>
   );
 };
