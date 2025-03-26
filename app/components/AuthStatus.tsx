@@ -30,9 +30,9 @@ const AuthStatus = () => {
         </label>
         <ul
           tabIndex={0}
-          className="menu dropdown-content bg-base-100 rounded-box border  border-gray-500   mt-2 space-y-2 z-50 w-52 p-2 shadow"
+          className="menu  dropdown-content bg-base-100 rounded-box border  border-gray-500   mt-10 space-y-2 z-50 w-fit p-2 shadow"
         >
-          <div className="flex flex-col bg-base-200 space-y-1.5 p-2 rounded-sm">
+          <div className="flex flex-col bg-base-200 space-y-1.5 p-2 rounded-sm ">
             <span className="px-2 text-md">{session?.user?.name}</span>
             <span className="px-3 text-sm text-gray-500">
               {session?.user?.email}

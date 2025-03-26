@@ -5,16 +5,15 @@ export async function getIssues(
   pagination: { page: number; pageSize: number; itemCount: number },
   status?: Status,
   orderBy?: string,
-  direction?: "asc" | "desc" = "desc"
+  direction?: string = "asc" | "desc" | undefined
 ) {
-  if (!status && !orderBy) return await prisma.issue.findMany();
   return await prisma.issue.findMany({
     where: status ? { status } : {},
-    orderBy: orderBy
-      ? {
-          [orderBy || "title"]: direction,
-        }
-      : undefined,
+
+    orderBy: {
+      [orderBy ?? "title"]: direction === "asc" ? "asc" : "desc",
+    },
+
     skip: (pagination.page - 1) * pagination.pageSize || 0,
     take: pagination.pageSize,
   });

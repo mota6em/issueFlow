@@ -30,7 +30,7 @@ const NavBar = () => {
 export default NavBar;
 
 const ModeToggle = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [theme, setTheme] = useState(  "dark");
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -198,7 +198,7 @@ const MobileDropdown = () => {
               href={href}
               className="text-lg font-medium border-b border-base-content/10"
             >
-              {label}{" "}
+              {label} 
             </Link>
           </li>
         ))}
